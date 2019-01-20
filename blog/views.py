@@ -56,9 +56,14 @@ def post_list(request):
     
        # result.append(loadPage(url))
         if(page_from != "" and page_to != ""):
-            for x in range(int(page_from), int (page_to)):
-                url = prefix+product_id+postfix+str(x)
+            if(int (page_to) == 1):
+                url = prefix+product_id+postfix+str(1)
+                print(url)
                 result+=loadPage(url)
+            else:      
+                    for x in range(int(page_from), int (page_to)):
+                        url = prefix+product_id+postfix+str(x)
+                        result+=loadPage(url)
                
         if(len(result) != 0):
             for value in result:
