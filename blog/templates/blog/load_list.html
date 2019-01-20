@@ -1,0 +1,125 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+
+    <!-- Bootstrap core CSS -->
+
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body class="bg-light">
+
+<div class="container">
+    
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <a class="navbar-brand" href="#">Ceneo pj</a>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="/">Load product</a>
+      </li>
+        
+      <li class="nav-item active">
+        <a class="nav-link" href="">Data Base <span class="sr-only">(current)</span></a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" name="product_id" value="{{ product_id }}" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
+    <div class="row ">
+        <div class="col-md-12 ">
+            <form class="needs-validation"  novalidate>
+                <div class="row">    
+                </div>
+                <hr class="mb-4">
+                
+                <div class="container">
+              <h2>Product From Base</h2>
+            <div class="table-responsive">     
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                                <th>Product_Id</th>
+                                <th>id_autor</th>
+                                <th>Recomendation</th>
+                                <th>Author</th>
+                                <th>Starts</th>
+                                <th>advantages</th>
+                                <th>useful</th>
+                                <th>unuseful</th>
+                                <th>add_date</th>
+                                <th>purchase_date</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for result in blog %}
+                  <tr>
+                    <td>{{ result.product_id }}</td>
+                    <td>{{ result.id }}</td>
+                    <td>{{ result.recomendation }}</td>
+                    <td>{{ result.author }}</td>
+                    <td>{{ result.stars }}</td>
+                    <td>{{ result.advantages }}</td>
+                    <td>{{ result.useful }}</td>
+                    <td>{{ result.unuseful }}</td>
+                    <td>{{ result.add_date }}</td>
+                    <td>{{ result.purchase_date }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+{% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+                    </div>
+                </div>
+                <hr class="mb-4">
+            
+                
+                
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
